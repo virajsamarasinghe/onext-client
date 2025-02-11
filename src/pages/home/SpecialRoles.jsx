@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Cards from "../../components/Cards";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import axios from "axios";
 
 const SimpleNextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -59,10 +60,9 @@ const SpecialRoles = () => {
   const [autoScrollDirection, setAutoScrollDirection] = useState("next");
 
   useEffect(() => {
-    fetch("https://onext-server1.onrender.com/menu")
-      .then((res) => res.json())
-      .then((data) => {
-        const specials = data.filter((item) => item.category === "popular");
+    axios.get("https://onext-server1.onrender.com/menu")
+      .then((res) => {
+        const specials = res.data.filter((item) => item.category === "popular");
         setRecipes(specials);
       })
       .catch((error) => {

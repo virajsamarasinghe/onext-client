@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Cards from '../../components/Cards';
 import { FaFilter } from "react-icons/fa";
+import axios from 'axios';
 
 const Menu = () => {
     const [menu, setMenu] = useState([]);
@@ -11,13 +12,13 @@ const Menu = () => {
     const [itemsPerPage] = useState(8);
     const [loading, setLoading] = useState(true);
 
-    const shopSectionRef = useRef(null); // Add this line
+    const shopSectionRef = useRef(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://onext-server1.onrender.com/menu");
-                const data = await response.json();
+                const response = await axios.get("https://onext-server1.onrender.com/menu");
+                const data = response.data;
                 setMenu(data);
                 setFilteredItems(data);
             } catch (error) {
@@ -74,7 +75,7 @@ const Menu = () => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     const scrollToShopSection = () => {
-        shopSectionRef.current.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the section
+        shopSectionRef.current.scrollIntoView({ behavior: 'smooth' });
     };
 
     if (loading) {
