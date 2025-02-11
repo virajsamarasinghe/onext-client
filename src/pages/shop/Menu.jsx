@@ -18,7 +18,7 @@ const Menu = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:6001/menu");
+                const response = await axios.get("https://onext-server1.onrender.com/menu");
                 setMenu(response.data);
                 setFilteredItems(response.data);
             } catch (error) {
