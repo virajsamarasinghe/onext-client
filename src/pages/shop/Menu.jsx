@@ -11,6 +11,7 @@ const Menu = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(8);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const shopSectionRef = useRef(null);
 
@@ -21,7 +22,8 @@ const Menu = () => {
                 setMenu(response.data);
                 setFilteredItems(response.data);
             } catch (error) {
-                console.log("Error fetching data", error);
+                console.error("Error fetching data", error);
+                setError("Failed to fetch data. Please try again later.");
             } finally {
                 setLoading(false);
             }
@@ -79,6 +81,10 @@ const Menu = () => {
 
     if (loading) {
         return <div className="text-center py-4">Loading...</div>;
+    }
+
+    if (error) {
+        return <div className="text-center py-4 text-red-500">{error}</div>;
     }
 
     return (
