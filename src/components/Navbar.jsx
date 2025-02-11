@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import logo from "/logo.png";
 import { FaRegUser } from "react-icons/fa";
 import Modal from "./Modal";
 import Profile from "./Profile";
-import { Link } from "react-router-dom";
 import useCart from "../hooks/useCart";
 import useAuth from "../hooks/useAuth";
 
@@ -56,31 +55,31 @@ const Navbar = () => {
   const navItems = (
     <>
       <li>
-        <a href="/" className="text-pink">
+        <Link to="/" className="text-pink">
           Home
-        </a>
+        </Link>
       </li>
       <li tabIndex={0}>
         <details>
           <summary>Categories</summary>
           <ul className="p-2">
             <li>
-              <a href="/menu">All</a>
+              <Link to="/menu">All</Link>
             </li>
             <li>
-              <a href="/menu">Dresses</a>
+              <Link to="/menu?category=dresses">Dresses</Link>
             </li>
             <li>
-              <a href="/menu">T-Shirts</a>
+              <Link to="/menu?category=tshirts">T-Shirts</Link>
             </li>
             <li>
-              <a href="/menu">Blouses</a>
+              <Link to="/menu?category=blouses">Blouses</Link>
             </li>
             <li>
-              <a href="/menu">Pants</a>
+              <Link to="/menu?category=pants">Pants</Link>
             </li>
             <li>
-              <a href="/menu">Skirt</a>
+              <Link to="/menu?category=skirts">Skirts</Link>
             </li>
           </ul>
         </details>
@@ -90,16 +89,16 @@ const Navbar = () => {
           <summary>Services</summary>
           <ul className="p-2">
             <li>
-              <a href="/customize-design">Customize Design </a>
+              <Link to="/customize-design">Customize Design</Link>
             </li>
             <li>
-              <a href="/online-order">Online Order</a>
+              <Link to="/online-order">Online Order</Link>
             </li>
           </ul>
         </details>
       </li>
       <li>
-        <a href="/blog">Bloges</a>
+        <Link to="/blog">Blogs</Link>
       </li>
     </>
   );
@@ -132,10 +131,10 @@ const Navbar = () => {
               {navItems}
             </ul>
           </div>
-          <a href="/">
+          <Link to="/">
             <p className="text-black text-xl">ONEXT</p>
             <img src={logo} alt="Logo" />
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
