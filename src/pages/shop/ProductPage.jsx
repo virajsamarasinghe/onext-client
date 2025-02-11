@@ -13,7 +13,7 @@ const ProductPage = () => {
   const [animateImage, setAnimateImage] = useState(null);
 
   useEffect(() => {
-    axios.get(`https://onext-server1.onrender.com/menu/${id}`)
+    axios.get(`http://localhost:6001/menu/${id}`)
       .then(response => {
         setProduct(response.data);
         setSelectedImage(response.data.image); // Set initial selected image

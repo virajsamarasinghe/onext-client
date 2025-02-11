@@ -59,7 +59,7 @@ const SpecialRoles = () => {
   const [autoScrollDirection, setAutoScrollDirection] = useState("next");
 
   useEffect(() => {
-    fetch("https://onext-server1.onrender.com/menu")
+    fetch("http://localhost:6001/menu")
       .then((res) => res.json())
       .then((data) => {
         const specials = data.filter((item) => item.category === "popular");
