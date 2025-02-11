@@ -2,7 +2,6 @@ import React from 'react'
 import useAuth from '../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 const Order = () => {
 
@@ -13,12 +12,12 @@ const Order = () => {
   const { refetch, data: orders = [] } = useQuery({
       queryKey: ['orders', user?.email],
       queryFn: async () => {
-          const res = await axios.get(`https://onext-server1.onrender.com/payments?email=${user?.email}`, {
+          const res = await fetch(`https://onext-server1.onrender.com/payments?email=${user?.email}`, {
               headers: {
                   authorization: `Bearer ${token}`
               }
           })
-          return res.data;
+          return res.json();
       },
   })
 

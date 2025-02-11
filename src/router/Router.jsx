@@ -20,7 +20,6 @@ import BlogPage from "../pages/extrapages/Blog";
 import CustomizeDesign from "../pages/extrapages/CustomizeDesign"; 
 import OnlineOrder from "../pages/extrapages/OnlineOrder";
 import CustomerSupport from "../pages/extrapages/CustomerSupport";
-import axios from 'axios';
 
 const router = createBrowserRouter([
   {
@@ -104,10 +103,7 @@ const router = createBrowserRouter([
       {
         path: 'update-menu/:id',
         element: <UpdateMenu />,
-        loader: async ({ params }) => {
-          const response = await axios.get(`https://onext-server1.onrender.com/menu/${params.id}`);
-          return response.data;
-        },
+        loader: ({ params }) => fetch(`https://onext-server1.onrender.com/menu/${params.id}`),
       },
     ],
   },
